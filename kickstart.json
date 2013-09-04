@@ -6,7 +6,6 @@
 	  "iso_checksum": "d717af33dd258945e6304f9955487017",
 	  "iso_checksum_type": "md5",
 	  "ssh_username": "root",
-	  "ssh_wait_timeout": "300s",
 	  "disk_size" : 8000,
 	  "shutdown_command": "shutdown -h now",
 	  "http_directory" : "/Users/mdumont/projects/packer-demo",
