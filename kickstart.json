@@ -1,23 +1,33 @@
 {
-	"provisioners" : [{
-		"type" : "chef-solo",
-		"cookbook_paths": ["/Users/mdumont/p4/DIRE/projects/chef/chef-repo/cookbooks"],
-		"run_list" : ["bb_yum::default"]
-	}],
-	"builders" : [{
-	  "type": "virtualbox",
-	  "guest_os_type": "RedHat_64",
-	  "iso_url": "/Users/mdumont/Downloads/rhel-server-6.3-x86_64-dvd.iso",
-	  "iso_checksum": "d717af33dd258945e6304f9955487017",
-	  "iso_checksum_type": "md5",
-	  "ssh_username": "root",
-	  "ssh_password" : "vagrant",
-	  "ssh_port" : 22,
-	  "disk_size" : 8000,
-	  "shutdown_command": "shutdown -h now",
-	  "http_directory" : "/Users/mdumont/projects/packer-demo",
-	  "boot_wait" : "5s",
-	  "headless" : false,
-	  "boot_command" : ["<esc>", " linux ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/anaconda-ks.cfg", "<enter>"]
-	}]	
+  "post-processors" : [{ 
+  	"type" : "vagrant",
+  	"output" : "packer_{{.BuildName}}_{{.Provider}}.box",
+  	"virtualbox" : {
+  		"vagrantfile_template" : "./vbox_vagrantfile_template"
+  	}
+  }],
+  "builders": [
+    {
+      "boot_command": [
+        "<esc>",
+        " linux ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg",
+        "<enter>",
+        "<wait>"
+      ],
+      "boot_wait": "5s",
+      "disk_size": 8000,
+      "guest_os_type": "RedHat_64",
+      "headless": false,
+      "http_directory": "/Users/mdumont/projects/packer-demo",
+      "iso_checksum": "d717af33dd258945e6304f9955487017",
+      "iso_checksum_type": "md5",
+      "iso_url": "/Users/mdumont/Downloads/rhel-server-6.3-x86_64-dvd.iso",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_username": "root",
+      "type": "virtualbox",
+      "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+      "virtualbox_version_file": "/tmp/.vbox_version"
+    }
+  ]
 }
