@@ -1,0 +1,26 @@
+{
+	"builders" : [{
+	  "type": "virtualbox",
+	  "guest_os_type": "RedHat_64",
+	  "iso_url": "/Users/mdumont/Downloads/rhel-server-6.3-x86_64-dvd.iso",
+	  "iso_checksum": "d717af33dd258945e6304f9955487017",
+	  "iso_checksum_type": "md5",
+	  "ssh_username": "root",
+	  "ssh_wait_timeout": "30s",
+	  "disk_size" : 8000,
+	  "shutdown_command": "shutdown -h now",
+	  "boot_wait" : "5s",
+	  "boot_command" : [ "<enter><wait10><wait10>", 
+	  					 "<tab><enter><wait10>", 
+	  					 "<enter><wait5>", 
+	  					 "<enter><wait5>", 
+	  					 "<enter><wait5>", 
+	  					 "<tab><tab><tab><enter><wait5>", 
+	  					 "<tab><tab><enter><wait5>", 
+	  					 "vagrant<enter>vagrant<enter><enter><wait1><tab><enter><wait5>", 
+	  					 "<tab><tab><enter><wait5>", 
+	  					 "<tab><enter><wait10><wait10><wait10><wait10><wait10><wait10><wait10><wait10>", 
+	  					 "<enter><wait10><wait10><wait10><wait10><wait10><wait10><wait10>"
+	  					 ]
+	}]
+}
