@@ -1,9 +1,8 @@
 {
   "post-processors" : [{ 
   	"type" : "vagrant",
-  	"output" : "packer_{{.BuildName}}_{{.Provider}}.box",
   	"virtualbox" : {
-  		"vagrantfile_template" : "./vbox_vagrantfile_template"
+  		"vagrantfile_template" : "/Users/mdumont/projects/packer-demo/vbox_vagrantfile_template"
   	}
   }],
   "builders": [
