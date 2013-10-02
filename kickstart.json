@@ -1,10 +1,5 @@
 {
-  "post-processors" : [{ 
-  	"type" : "vagrant",
-  	"virtualbox" : {
-  		"vagrantfile_template" : "/Users/mdumont/projects/packer-demo/vbox_vagrantfile_template"
-  	}
-  }],
+  
   "builders": [
     {
       "boot_command": [
@@ -28,5 +23,11 @@
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "virtualbox_version_file": "/tmp/.vbox_version"
     }
-  ]
+  ],
+  "provisioners" : [
+    { 
+      "type" : "chef-solo",
+      "cookbook_paths" : ["cookbooks", "/Users/mdumont/p4/DIRE/projects/chef/chef-repo/cookbooks"],
+      "run_list" : ["recipe[vagrantize]"],
+      "json" : { "learn" : { "version" : "9.1.160016.0", "flavor" : "postgresql" }} }]
 }

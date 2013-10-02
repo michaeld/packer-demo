@@ -1,2 +1,6 @@
 packer_cache
 output-virtualbox
+**.box
+Vagrantfile
+.vagrant
+cookbooks
