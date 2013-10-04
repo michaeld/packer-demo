@@ -1,5 +1,4 @@
-{
-  
+{  
   "builders": [
     {
       "boot_command": [
@@ -27,7 +26,8 @@
   "provisioners" : [
     { 
       "type" : "chef-solo",
-      "cookbook_paths" : ["cookbooks", "/Users/mdumont/p4/DIRE/projects/chef/chef-repo/cookbooks"],
+      "cookbook_paths" : ["cookbooks"],
       "run_list" : ["recipe[vagrantize]"],
-      "json" : { "learn" : { "version" : "9.1.160016.0", "flavor" : "postgresql" }} }]
+      "json" : {} 
+    }]
 }
