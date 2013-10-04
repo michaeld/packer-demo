@@ -1,4 +1,4 @@
-{  
+{
   "builders": [
     {
       "boot_command": [
@@ -9,25 +9,39 @@
       ],
       "boot_wait": "5s",
       "disk_size": 8000,
+      "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "guest_os_type": "RedHat_64",
       "headless": false,
       "http_directory": "/Users/mdumont/projects/packer-demo",
       "iso_checksum": "d717af33dd258945e6304f9955487017",
       "iso_checksum_type": "md5",
       "iso_url": "/Users/mdumont/Downloads/rhel-server-6.3-x86_64-dvd.iso",
+      "shutdown_command" : "shutdown -h now",
+      "shutdown_timeout" : "10s",
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_username": "root",
       "type": "virtualbox",
-      "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "virtualbox_version_file": "/tmp/.vbox_version"
     }
   ],
-  "provisioners" : [
-    { 
-      "type" : "chef-solo",
-      "cookbook_paths" : ["cookbooks"],
-      "run_list" : ["recipe[vagrantize]"],
-      "json" : {} 
-    }]
+  "provisioners": [
+    {
+      "cookbook_paths": [
+        "cookbooks"
+      ],
+      "json": {},
+      "run_list": [
+        "recipe[vagrantize]"
+      ],
+      "type": "chef-solo"
+    }
+  ],
+  "post-processors" : [
+  	{ 
+  		"type" : "vagrant",
+  		"virtualbox" : {}
+  	}
+  ]
 }
+
